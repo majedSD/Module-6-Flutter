@@ -211,4 +211,5 @@ class HomeActivity extends StatelessWidget{
     Icon(Icons.access_alarm),
     Icon(Icons.access_alarm),
     ],
-    ),*/
+    ),
+ */
