@@ -28,7 +28,11 @@ class MyApp extends StatelessWidget{
 }
 class HomeActivity extends StatelessWidget{
   const HomeActivity({super.key});
-
+   MySnackBar(message,context){
+     return ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(content: Text(message)),
+     );
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +86,7 @@ class HomeActivity extends StatelessWidget{
             ),
             IconButton(onPressed:(){}, icon: Icon(Icons.add)),
             SizedBox(height: 10,),
-            OutlinedButton(onPressed: (){}, child: Text('OUTLINED BUTTON')),
+            OutlinedButton(onPressed: (){MySnackBar(Text('This is outlined button'), context);}, child: Text('OUTLINED BUTTON')),
             SizedBox(height: 10,),
             SizedBox(
               width: 300,
