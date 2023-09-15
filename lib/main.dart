@@ -1,125 +1,187 @@
+/**
+ *
+ *
+ *
+ *    KOMAIYA KOTHA KOW MIA MOSTANI KORO NI AMAR LOGE MOSTANI KORIA O NAH AMARA CINO NI
+ *    EKABARE DUKAI DIMU TUMARA JELHAZOTO MOJA BUJILAIBAI KHAHINI AMAR LOGE KORIO NAH
+ *
+ *
+ *
+ *
+ */
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:module_6_flutter/Fragment/babyFragment.dart';
+import 'package:module_6_flutter/Fragment/homeFragment.dart';
+import 'package:module_6_flutter/Fragment/messageFragment.dart';
+import 'package:module_6_flutter/Fragment/personFragment.dart';
 
-void main() {
-  runApp(const MyApp());
+///My first programme is running now and how work my flutter project and what kind of benifit here
+void main(){
+  runApp( const MyApp());
 }
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeActivity(),
     );
   }
 }
+class HomeActivity extends StatelessWidget {
+   HomeActivity({super.key});
+  var MyItems=[
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'Majedu'},
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'korimu'},
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'Rohimu'},
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'Shimu'},
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'Muhiminu'},
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'Labonnu'},
+    {"img":"https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U","tittle":'Salmanu'},
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  ];
+  MySnackBar(message,context){
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
   }
+   MyAlertDialog(context){
+     return showDialog(
 
+         context: context,
+         builder: (BuildContext context) {
+           return Expanded(
+               child: AlertDialog(
+                 title: Text('Alert  !'),
+                 content: Text('Do you want to delet this account'),
+                 actions: [
+                   TextButton(onPressed: (){
+                     MySnackBar('Delet Success', context);
+                     Navigator.of(context).pop();
+                   }, child: Text("Yes")),
+                   TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text('No'))
+                 ],
+               )
+           );
+         }
+     );
+   }
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        centerTitle: true,
+        title: Text('Home Page'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+    body: Center(
+      child: LinearProgressIndicator(    ///Same to same work with  CircularProgressIndicator
+        color: Colors.purple,
+        minHeight: 5,
+        backgroundColor: Colors.pink,
+      ),
+    ),
+    /*
+    Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(padding: EdgeInsets.all(20)),
+          Card(
+            color: Colors.pink,
+            shadowColor: Colors.green,
+            elevation: 80,
+           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+           child: SizedBox(
+             height: 200,
+             width: 200,
+             child: Center(child: Text('Munzareen vs Ayman'),),
+           ),
+         ),
+
+        ],
+      ),
+    ),
+    DefaultTabController(
+        length: 8,
+        child: Scaffold(
+      appBar: AppBar(
+        title: Text('Home page', style: TextStyle(fontSize: 40),),
+        backgroundColor: Colors.pink,
+        centerTitle: true,
+        bottom: TabBar(
+          isScrollable: true,
+          tabs: [
+            Tab(icon:Icon(Icons.home),text:'Home'),
+            Tab(icon:Icon(Icons.person),text:'Person'),
+            Tab(icon:Icon(Icons.message),text:'Message'),
+            /*Tab(icon:Icon(Icons.email),text:'Email'),
+            Tab(icon:Icon(Icons.android),text:'Android'),
+            Tab(icon:Icon(Icons.apple),text:'Apple'),
+            Tab(icon:Icon(Icons.headset_mic_outlined),text:'HeadPhone'),
+            Tab(icon:Icon(Icons.baby_changing_station_outlined),text:'Baby'),*/
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: TabBarView(
+        children: [
+         messageFragment(),
+          personFragment(),
+          homeFragment(),
+        ],
+      ),
+      /*
+      body:ListView.builder(
+          itemCount:MyItems.length,
+          itemBuilder: (context,index){
+            return GestureDetector(
+              onTap: (){MySnackBar(MyItems[index]['tittle'], context);},
+              child: Container(
+                margin: EdgeInsets.all(10),
+                width:200,
+                height:200,
+                child: Image.network(MyItems[index]['img']!,fit: BoxFit.fill,),
+              ),
+            );
+          },
+      ),
+      Center(
+        child: ElevatedButton(
+          child: Text('Click me'),
+          onPressed: (){MyAlertDialog(context);},
+        ),
+      ),
+
+      Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      Container(height: 100,width: 100,child: Image.network('https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U'),),
+      Container(height: 100,width: 100,child: Image.network('https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U'),),
+      Container(height: 100,width: 100,child: Image.network('https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U'),),
+    ],
+    ),
+
+    Container(
+        height: 250,
+        width: 250,
+        alignment: Alignment.center,
+        margin: EdgeInsets.all(100),
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: Colors.purple,
+          border: Border.all(color: Colors.black87,width: 87)
+        ),
+        child: Image.network('https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U'),
+        //padding: EdgeInsets.fromLTRB(left, top, right, bottom),
+       //margin: EdgeInsets.fromLTRB(left, top, right, bottom),
+      )
+      Center(
+        child: Image.network('https://media.licdn.com/dms/image/D5603AQEeifD0eSgOZA/profile-displayphoto-shrink_800_800/0/1688810978987?e=1700092800&v=beta&t=myADUny1Bxb_Mfu1ySIZ7hfzm7C_aZukzxaNVU2zi7U'),
+      ),
+      */
+     */
     );
   }
+
 }
